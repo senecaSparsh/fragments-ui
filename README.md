@@ -3,13 +3,13 @@
 This repository contains the code and instructions for completing the Fragments Lab. The lab consists of two main components: fragments and fragments-ui. The fragments component is a microservice that provides data related to user fragments, and the fragments-ui component is a web application that allows users to interact with the microservice using Amazon Cognito for authentication.
 
 # Table of Contents
-Prerequisites
-Getting Started
-Setting Up the fragments Microservice
-Setting Up the fragments-ui Web Application
-Connect Web App to User Pool
-Secure fragments Routes
-Connect Client Web App to Secure Microservice
+-Prerequisites
+-Getting Started
+-Setting Up the fragments Microservice
+-Setting Up the fragments-ui Web Application
+-Connect Web App to User Pool
+-Secure fragments Routes
+-Connect Client Web App to Secure Microservice
 
 
 # Before you begin, make sure you have the following prerequisites installed:
