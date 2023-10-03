@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
     <script type="module" src="app.js"></script>
     <script type="module" src="hmr.js"></script>
+    <script type="module" src="api.js"></script>
+
   </head>
   <body>
     <h1>Fragments UI</h1>
@@ -15,5 +17,15 @@
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
     </section>
+    <section hidden id="post">
+      <from>
+        <input type="text" id="data">
+        <button type="submit" id="postBtn"> POST </button>
+        <button type="submit" id="getBtn"> GET FRAGMENT </button>
+        <button type="submit" id="getListBtn"> GET FRAGMENT EXPAND </button>
+        <button type="submit" id="getByIdBtn"> GET DATA BY ID</button>
+      </from>
+  
+      </section>
   </body>
 </html>
