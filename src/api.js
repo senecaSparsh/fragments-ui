@@ -19,21 +19,28 @@ export async function getUserFragments(user) {
       throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    console.log("Got user fragments data", { data });
+    console.log(data);
   } catch (err) {
     console.error("Unable to call GET /v1/fragment", { err });
   }
 }
 
-export async function postUserFragments(user, data) {
+export async function postUserFragments(user, data, type) {
   console.log("Posting user fragments data...");
   try {
-    const options = {
+    if (type == "application/json") {
+      data = JSON.parse(JSON.stringify(data));
+      console.log(data);
+    }
+    const res = await fetch(`${apiUrl}/v1/fragments`, {
+      method: "post",
+      headers: {
+        // Include the user's ID Token in the request so we're authorized
+        Authorization: `Bearer ${user.idToken}`,
+        "Content-type": type,
+      },
       body: data,
-      method: "POST",
-      headers: { Authorization: `Bearer ${user.idToken}` },
-    };
-    const res = await fetch(`${apiUrl}/v1/fragments`, options);
+    });
 
     if (!res.ok) {
       throw new Error(`${res.status} ${res.statusText}`);
@@ -58,28 +65,62 @@ export async function getUserFragmentList(user) {
       throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    console.log("Got user fragment list data", { data });
+    console.log(data);
   } catch (err) {
     console.error("Unable to call GET /v1/fragment/?expand=1", { err });
   }
 }
 
-export async function getUserDataById(user, id) {
-  console.log(`Requesting user fragments data by id...${id}`);
-  console.log(`fetching ${apiUrl}/v1/fragments/${id}`);
+export async function getFragmentDataById(user, id) {
   try {
-    const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+    if (id != "") {
+      console.log(`Requesting user fragments data by id...${id}`);
+      console.log(`fetching ${apiUrl}/v1/fragments/${id}`);
+      const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+        headers: {
+          // Include the user's ID Token in the request so we're authorized
+          Authorization: `Bearer ${user.idToken}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status} ${res.statusText}`);
+      }
+      const type = res.headers.get("Content-Type");
+      if (type.includes("text")) {
+        const data = await res.text();
+        console.log(`Got user fragment by id ${id}:` + data);
+        document.getElementById("dataBack").innerHTML = data;
+      }
+      if (type.includes("json")) {
+        const data = await res.json();
+        console.log(data);
+      }
+    } else {
+      document.getElementById("dataBack").textContent = "id can not be empty";
+    }
+  } catch (err) {
+    console.error(`Unable to call GET /v1/fragment/ ${id}`, { err });
+  }
+}
+
+export async function getFragmentInfo(user, id) {
+  console.log(`Requesting user fragments info by id...${id}`);
+  console.log(`fetching ${apiUrl}/v1/fragments/${id}/info`);
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${id}/info`, {
       headers: {
         // Include the user's ID Token in the request so we're authorized
         Authorization: `Bearer ${user.idToken}`,
       },
     });
+
     if (!res.ok) {
       throw new Error(`${res.status} ${res.statusText}`);
     }
     const data = await res.json();
-    console.log("Got user fragment data by id", { data });
+    console.log(data);
   } catch (err) {
-    console.error(`Unable to call GET /v1/fragment/ ${id}`, { err });
+    console.error(`Unable to call GET /v1/fragments/${id}/info`, { err });
   }
 }

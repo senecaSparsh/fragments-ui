@@ -2,12 +2,12 @@
   "name": "fragments-ui",
   "private": true,
   "version": "0.0.1",
-  "description": "Fragments UI testing web app",
+  "description": "web app to manage authentication with User Pool and test back-end fragments microservice",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
-    "build": "parcel build"
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",

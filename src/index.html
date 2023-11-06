@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
     <script type="module" src="app.js"></script>
     <script type="module" src="hmr.js"></script>
-    <script type="module" src="api.js"></script>
 
   </head>
   <body>
@@ -18,13 +17,23 @@
       <h2>Hello <span class="username"></span>!</h2>
     </section>
     <section hidden id="post">
-      <from>
-        <input type="text" id="data">
+      <label>Choose a type for the fragment you wish to POST:
+        <select name="types" id="types" required>
+          <option value="application/json">application/json</option>
+          <option value="text/html">text/html</option>
+          <option value="text/plain">text/plain</option>
+          <option value="text/markdown">text/markdown</option>
+        </select>
+        <hr>
+      <textarea type="text" id="data"></textarea>
         <button type="submit" id="postBtn"> POST </button>
+
         <button type="submit" id="getBtn"> GET FRAGMENT </button>
         <button type="submit" id="getListBtn"> GET FRAGMENT EXPAND </button>
-        <button type="submit" id="getByIdBtn"> GET DATA BY ID</button>
-      </from>
+        <input type="text" id="id">
+      <button type="submit" id="getByIdBtn"> GET Data</button>
+      <button type="submit" id="getInfoBtn"> GET Metadata</button>
+    <div id="dataBack"></div>
   
       </section>
   </body>
