@@ -3,38 +3,101 @@
   <head>
     <meta charset="utf-8" />
     <title>Fragments UI</title>
-    <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
-    <script type="module" src="app.js"></script>
-    <script type="module" src="hmr.js"></script>
-
+  <link rel="stylesheet" href="https://unpkg.com/bamboo.css" />
+    <script type="module" src="./app.js"></script>
   </head>
+
   <body>
     <h1>Fragments UI</h1>
-    <section>
-      <nav><button id="login">Login</button> <button id="logout">Logout</button></nav>
-    </section>
     <section hidden id="user">
       <h2>Hello <span class="username"></span>!</h2>
     </section>
-    <section hidden id="post">
-      <label>Choose a type for the fragment you wish to POST:
-        <select name="types" id="types" required>
-          <option value="application/json">application/json</option>
-          <option value="text/html">text/html</option>
-          <option value="text/plain">text/plain</option>
-          <option value="text/markdown">text/markdown</option>
-        </select>
-        <hr>
-      <textarea type="text" id="data"></textarea>
-        <button type="submit" id="postBtn"> POST </button>
+      <nav><button id="login">Login</button> <button id="logout">Logout</button></nav>
+      <br><br>  
+    <section id = "fragment">
+      <h1>FRAGMENTS</h1>
+        <p>Enter the post for Fragments</p>
+      <input type="input" id="new-Fragments" name="title"/>
+      <h4><b>Choose a file</b></h4>
+      <input type="file" id="new-Fragment-file" name="title"/>
+      <br><br>
+      <Button id="fragButtonfile"><b>Upload file</b></Button>
+      <br><br>
+      <label>Fragment Type:
+        <select class="ui fluid dropdown" id="fragmentType">
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">text/plain; charset=utf-8</option>
+        <option value="text/markdown">text/markdown</option>
+        <option value="text/html">text/html</option>
+        <option value="application/json">application/json</option>
+        <option value="application/json; charset=utf-8">application/json; charset=utf-8</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/gif">image/gif</option>
+      </label>
+      <br> 
+      <Button id="fragButton">Fragments ready</Button></select>
+      </select>
+        <br><br>
+      <br /><br />
+        <h1>UPDATE FRAGMENTS</h1>
+        <label for="content">Enter ID:</label>
+        <input type="input" id="updateID" name="update-fragment-id">
+        <label for="content">Enter Data to update:</label>
+        <input type="input" id="updateContent" name="update-fragment">
+        <br><br>
+        <label>Fragment Type:</label>
+        <select class="ui fluid dropdown" id="updateType">
+        <option value="text/plain">text/plain</option>
+        <option value="text/plain; charset=utf-8">
+          text/plain; charset=utf-8
+        </option>
+        
+        <option value="text/markdown">text/markdown</option>
+        <option value="text/html">text/html</option>
+        <option value="application/json">application/json</option>
+        <option value="application/json; charset=utf-8">
+          application/json; charset=utf-8
+        </option>
+        <option value="application/xml">application/xml</option>
+        <option value="application/xml; charset=utf-8">
+          application/xml; charset=utf-8
+        </option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/gif">image/gif</option>
+        <option value="image/svg+xml">image/svg+xml</option>
+        <br>
+      <button id="updatebtn">Update Fragment</button>
+      <br><br>
+      <br><br>
 
-        <button type="submit" id="getBtn"> GET FRAGMENT </button>
-        <button type="submit" id="getListBtn"> GET FRAGMENT EXPAND </button>
-        <input type="text" id="id">
-      <button type="submit" id="getByIdBtn"> GET Data</button>
-      <button type="submit" id="getInfoBtn"> GET Metadata</button>
-    <div id="dataBack"></div>
-  
-      </section>
+      <h1>GETTING ID FOR FRAGMENTS</h1>
+      <label for="get_id">Enter ID For Get:</label>
+      <input type="text" id="get_id" name="get_id" /><br /><br />
+      <button id="getbyid">GET BY ID</button>
+      <button id="getInfo">GET BY ID INFO</button>
+      <br><br>
+      <p id="content-type" name="content-type">DATA:</p>
+      <br /><br />
+      <h1>DELETE FRAGMENTS</h1>
+      <input type="input" id="deleteID" name="delete-fragment-id"> 
+      <br><br>
+      <button id="deletebtn">Delete Fragment</button>
+      <br /><br />
+      <br><br>
+      <h1>RETRIEVE ALL FRAGMENTS</h1>
+      <button id="getFragmentBtn">Get all user fragments</button>
+      <br><br>
+      
+      <table class="fragmentList">
+        <tr>
+          <th>id</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>type</th>
+        </tr>
+      </table>
+    </section>
   </body>
 </html>

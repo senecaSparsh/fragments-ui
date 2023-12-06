@@ -5,7 +5,7 @@ import { Amplify, Auth } from "aws-amplify";
 // Configure our Auth object to use our Cognito User Pool
 Amplify.configure({
   Auth: {
-    // Amazon Region. We can hard-code this (we always use the us-east-1 region)
+    // Amazon Region
     region: "us-east-1",
 
     // Amazon Cognito User Pool ID
@@ -20,11 +20,7 @@ Amplify.configure({
       domain: process.env.AWS_COGNITO_HOSTED_UI_DOMAIN,
 
       // These scopes must match what you set in the User Pool for this App Client
-      // The default based on what we did above is: email, phone, openid. To see
-      // your app's OpenID Connect scopes, go to Amazon Cognito in the AWS Console
-      // then: Amazon Cognito > User pools > {your user pool} > App client > {your client}
-      // and look in the "Hosted UI" section under "OpenID Connect scopes".
-      scope: ["email", "phone", "openid"],
+      scope: ["email", "profile", "openid"],
 
       // NOTE: these must match what you have specified in the Hosted UI
       // app settings for Callback and Redirect URLs (e.g., no trailing slash).
@@ -47,11 +43,11 @@ async function getUser() {
     // https://docs.amplify.aws/lib/auth/advanced/q/platform/js/#identity-pool-federation
     const currentAuthenticatedUser = await Auth.currentAuthenticatedUser();
 
+    // If that didn't throw, we have a user object, and the user is authenticated
+    console.log("The user is authenticated");
+
     // Get the user's username
     const username = currentAuthenticatedUser.username;
-
-    // If that didn't throw, we have a user object, and the user is authenticated
-    console.log("The user is authenticated", username);
 
     // Get the user's Identity Token, which we'll use later with our
     // microservice. See discussion of various tokens:
